@@ -1,0 +1,152 @@
+
+.profile-details {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.truncate {
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.reveal-button {
+    background-color: #f1f1f1;
+    color: #262626;
+    border: 1px solid #dbdbdb;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 12px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.reveal-button:hover {
+    background-color: #e6e6e6;
+}
+.profile-details p {
+    margin: 5px 0; /* Compact vertical spacing */
+    display: flex;
+    align-items: center; /* Vertically centers items */
+    border-bottom: 1px solid #efefef; /* Optional for separation */
+    padding-bottom: 5px; /* Compact padding */
+}
+
+.profile-details p strong {
+    color: #262626;
+    font-weight: 600;
+    margin-right: 0; /* No extra margin between strong and span */
+    flex-shrink: 0; /* Prevents shrinking of the label */
+}
+
+.profile-details p span {
+    word-break: break-word; /* Ensures long text wraps correctly */
+    max-width: 100%;
+    overflow-wrap: break-word;
+    text-align: left; /* Aligns value to the left */
+}
+.profile-details {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+
+
+/* Update the HTML structure to use consistent spacing */
+.profile-details > div {
+    margin-bottom: 15px;
+}
+
+.profile-details > div:last-child {
+    margin-bottom: 0;
+}
+h1 {
+    text-align: center;
+    color: #262626;
+    margin-bottom: 20px;
+}
+
+h2 {
+    text-align: center;
+    color: #262626;
+    border-bottom: 2px solid #dbdbdb;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.profile-details p {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #efefef;
+    padding-bottom: 10px;
+}
+
+.profile-details p strong {
+    color: #262626;
+    font-weight: 600;
+}
+
+form {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    color: #262626;
+    font-weight: 600;
+}
+
+input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #dbdbdb;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #0095f6;
+    box-shadow: 0 0 0 2px rgba(0, 149, 246, 0.1);
+}
+
+button {
+    background-color: #0095f6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #0084d3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .profile-details, form {
+        border-radius: 0;
+        box-shadow: none;
+    }
+}

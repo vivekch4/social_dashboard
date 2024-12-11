@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Update API Key{% endblock %}
+
+{% block content %}
+<h1>Update API Key</h1>
+<form method="post">
+    {% csrf_token %}
+    <label for="api_key">Graph API Key:</label>
+    <input type="text" name="api_key" id="api_key" value="{{ user.api_key }}" required>
+    <button type="submit">Update</button>
+</form>
+{% endblock %}

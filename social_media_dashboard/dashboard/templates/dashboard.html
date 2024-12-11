@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="instagram-container">
+    {% for post in posts %}
+    <div class="post">
+        <div class="post-header">
+            <!-- Use the profile picture from user_profile -->
+            <img src="{{ user_profile.profile_picture_url|default:'/api/placeholder/42/42' }}" alt="Profile" class="profile-pic">
+            <span class="username">{{ user_profile.username|default:'Unknown' }}</span>
+        </div>
+
+        <!-- Use the media_url for post images -->
+        <img src="{{ post.media_url|default:'/api/placeholder/600/600' }}" alt="Post" class="post-image">
+
+        <div class="post-actions">
+            <div class="action-icons">
+                <!-- Add the like heart icon here, using Font Awesome -->
+                <i class="far fa-heart like-icon" data-post-id="{{ post.id }}"></i>
+                <i class="far fa-comment"></i>
+                <i class="far fa-paper-plane"></i>
+            </div>
+            <div class="action-icons">
+                <i class="far fa-bookmark"></i>
+            </div>
+        </div>
+
+        <div class="post-details">
+            <!-- Display the likes count -->
+            <div class="likes-count">
+                <span class="like-icon-text">{{ post.like_count|default:'0' }} likes</span>
+            </div>
+
+            <!-- Display the post caption -->
+            <div class="post-caption">
+                <span class="username">{{ user_profile.username|default:'Unknown' }}</span> 
+                {{ post.caption|default:'No caption available' }}
+            </div>
+
+            <!-- Display the comments -->
+            <div class="comments-section">
+                {% if post.comments %}
+                <h4>Comments:</h4>
+                <ul>
+                    {% for comment in post.comments|slice:":2" %}
+                    <li>
+                        <strong>{{ comment.username|default:'Anonymous' }}</strong>: 
+                        {{ comment.text|default:'No comment text available' }}
+                        <span class="timestamp">{{ comment.timestamp|date:"M d, Y H:i" }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <button class="show-all-comments" data-post-id="{{ post.id }}">Show All</button>
+
+                <div class="all-comments-{{ post.id }}" style="display:none;">
+                    <ul>
+                        {% for comment in post.comments|slice:"2:" %}
+                        <li>
+                            <strong>{{ comment.username|default:'Anonymous' }}</strong>: 
+                            {{ comment.text|default:'No comment text available' }}
+                            <span class="timestamp">{{ comment.timestamp|date:"M d, Y H:i" }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% else %}
+                <p>No comments available.</p>
+                {% endif %}
+            </div>
+
+            <!-- Display the comments count -->
+            {% comment %} <div class="comments-count">View all {{ post.comments_count|default:'0' }} comments</div> {% endcomment %}
+
+            <!-- Format and display the timestamp -->
+            <div class="timestamp">{{ post.timestamp|date:"M d, Y H:i" }}</div>
+        </div>
+    </div>
+    {% empty %}
+        <p>No posts available.</p>
+    {% endfor %}
+</div>
+
+<script>
+    // Handle "Show All" button click
+    document.querySelectorAll('.show-all-comments').forEach(button => {
+        button.addEventListener('click', function() {
+            const postId = this.getAttribute('data-post-id');
+            const allCommentsDiv = document.querySelector(`.all-comments-${postId}`);
+
+            // Toggle the visibility of additional comments
+            if (allCommentsDiv.style.display === 'none') {
+                allCommentsDiv.style.display = 'block';
+                this.innerText = 'Show Less';
+            } else {
+                allCommentsDiv.style.display = 'none';
+                this.innerText = 'Show All';
+            }
+        });
+    });
+</script>
+
+{% endblock %}

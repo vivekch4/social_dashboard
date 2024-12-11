@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Social Dashboard{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% block extra_css %}{% endblock %}
+    {% block extrajs %}
+{% endblock%}
+</head>
+<body>
+    <div class="app-container">
+        <header class="main-header">
+            <div class="logo">
+                <h1>Social Pulse</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="{% url 'register' %}" class="nav-link">
+                        <i class="ri-user-add-line"></i>
+                        <span>Register</span>
+                    </a></li>
+                    <li><a href="{% url 'login' %}" class="nav-link">
+                        <i class="ri-login-box-line"></i>
+                        <span>Login</span>
+                    </a></li>
+                    <li><a href="{% url 'dashboard' %}" class="nav-link">
+                        <i class="ri-dashboard-line"></i>
+                        <span>Dashboard</span>
+                    </a></li>
+                    <li><a href="{% url 'profile' %}" class="nav-link">
+                        <i class="ri-user-line"></i>
+                        <span>Profile</span>
+                    </a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}" class="nav-link">
+                        <i class="ri-logout-box-line"></i>
+                        <span>Logout</span>
+                    </a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer class="main-footer">
+            <div class="footer-content">
+                <p>&copy; 2024 Social Pulse. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="ri-github-fill"></i></a>
+                    <a href="#" class="social-icon"><i class="ri-twitter-fill"></i></a>
+                    <a href="#" class="social-icon"><i class="ri-linkedin-fill"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+</html>

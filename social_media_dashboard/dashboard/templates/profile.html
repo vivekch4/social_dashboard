@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+{% block title %}Profile{% endblock %}
+{% block extrajs %}
+<script>
+    function toggleVisibility(fieldId) {
+        const fieldSpan = document.getElementById(fieldId);
+        if (fieldSpan) {
+            const isTruncated = fieldSpan.dataset.truncated === "true";
+            fieldSpan.textContent = isTruncated ? fieldSpan.title : `${fieldSpan.title.slice(0, 15)}...`;
+            fieldSpan.dataset.truncated = !isTruncated;
+        }
+    }
+</script>
+{% endblock%}
+{% block content %}
+<h1>Profile</h1>
+<div class="profile-details">
+    <p>
+        <strong>Username:</strong> 
+        <span>{{ user.username }}</span>
+    </p>
+    
+    <p>
+        <strong>API Key:</strong> 
+        <span id="api_key" class="truncate" data-truncated="true" title="{{ user.api_key }}">{{ user.api_key|slice:":15" }}...</span>
+        <button type="button" class="reveal-button" onclick="toggleVisibility('api_key')">Show</button>
+    </p>
+    
+    <p>
+        <strong>Instagram User ID:</strong> 
+        <span id="instagram_user_id" class="truncate" data-truncated="true" title="{{ user.instagram_user_id }}">{{ user.instagram_user_id|slice:":15" }}...</span>
+        <button type="button" class="reveal-button" onclick="toggleVisibility('instagram_user_id')">Show</button>
+    </p>
+</div>
+<h2>Update Profile Details</h2>
+<form method="post">
+    {% csrf_token %}
+    <label for="api_key">New API Key:</label>
+    <input type="text" name="api_key" id="api_key" value="{{ user.api_key }}" required>
+
+    <label for="instagram_user_id">Instagram User ID:</label>
+    <input type="text" name="instagram_user_id" id="instagram_user_id" value="{{ user.instagram_user_id }}" required>
+
+    <button type="submit">Update</button>
+</form>
+{% endblock %}

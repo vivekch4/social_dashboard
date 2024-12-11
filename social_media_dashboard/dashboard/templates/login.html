@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-card card">
+        <h1 class="login-title">Welcome Back</h1>
+        
+        {% if error %}
+        <div class="error-banner">
+            <i class="ri-error-warning-line"></i>
+            <p>{{ error }}</p>
+        </div>
+        {% endif %}
+
+        <form method="post" class="login-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">
+                    <i class="ri-user-line"></i>
+                    Username
+                </label>
+                <input 
+                    type="text" 
+                    name="username" 
+                    id="username" 
+                    required 
+                    placeholder="Enter your username"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">
+                    <i class="ri-lock-line"></i>
+                    Password
+                </label>
+                <input 
+                    type="password" 
+                    name="password" 
+                    id="password" 
+                    required 
+                    placeholder="Enter your password"
+                >
+                
+            </div>
+
+            <button type="submit" class="login-button">
+                <i class="ri-login-box-line"></i>
+                Login
+            </button>
+        </form>
+
+        <div class="signup-link">
+            Don't have an account? 
+            <a href="{% url 'register' %}">Sign Up</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: calc(100vh - 200px);
+    }
+
+    .login-card {
+        width: 100%;
+        max-width: 400px;
+        padding: 40px;
+        text-align: center;
+    }
+
+    .login-title {
+        margin-bottom: 30px;
+        color: var(--primary-color);
+        font-size: 2rem;
+    }
+
+    .login-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .form-group {
+        position: relative;
+        text-align: left;
+    }
+
+    .form-group label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 8px;
+        color: var(--text-color);
+        font-weight: 500;
+    }
+
+    .form-group label i {
+        color: var(--primary-color);
+        font-size: 1.2rem;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 12px 15px 12px 40px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 16px;
+        background-color: #f9f9f9;
+        transition: all 0.3s ease;
+    }
+
+    .form-group input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+    }
+
+    .forgot-password {
+        position: absolute;
+        right: 0;
+        top: -25px;
+        color: var(--primary-color);
+        text-decoration: none;
+        font-size: 0.9rem;
+    }
+
+    .login-button {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition: background-color 0.3s ease;
+    }
+
+    .login-button:hover {
+        background-color: #2980b9;
+    }
+
+    .login-button i {
+        font-size: 1.2rem;
+    }
+
+    .error-banner {
+        background-color: #ffdddd;
+        color: #d9534f;
+        padding: 15px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .error-banner i {
+        font-size: 1.5rem;
+        color: #d9534f;
+    }
+
+    .signup-link {
+        margin-top: 20px;
+        color: #666;
+        font-size: 0.9rem;
+    }
+
+    .signup-link a {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 600;
+    }
+</style>
+{% endblock %}

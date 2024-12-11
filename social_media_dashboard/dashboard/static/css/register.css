@@ -1,0 +1,173 @@
+:root {
+    --primary-color: #4a90e2;
+    --text-color: #333;
+    --background-color: #f4f6f7;
+    --card-background: #ffffff;
+    --border-radius: 12px;
+}
+
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 200px);
+    padding: 20px;
+}
+
+.register-card {
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+}
+
+.register-card h1 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.label-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.form-group label {
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.tooltip-container {
+    position: relative;
+}
+
+.tooltip-icon {
+    color: var(--primary-color);
+    cursor: help;
+    font-size: 1.2rem;
+}
+
+.tooltip {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    display: none;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    width: 250px;
+    z-index: 10;
+    font-size: 0.8rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.tooltip-container:hover .tooltip {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.form-group input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.help-text {
+    color: #888;
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+.error-text {
+    color: #d9534f;
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+.submit-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    margin-top: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.submit-button:hover {
+    background-color: #357abd;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+    font-size: 14px;
+}
+
+.login-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .register-card {
+        padding: 20px;
+        margin: 0 10px;
+    }
+
+    .form-group input {
+        padding: 10px;
+    }
+
+    .tooltip {
+        width: 100%;
+        right: auto;
+        left: 0;
+    }
+}

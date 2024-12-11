@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% endblock %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="register-container">
+    <div class="register-card">
+        <h1>Create an Account</h1>
+        
+        <form method="post" class="register-form">
+            {% csrf_token %}
+            
+            <div class="form-fields">
+                {% for field in form %}
+                    <div class="form-group">
+                        <div class="label-wrapper">
+                            <label for="{{ field.id_for_label }}">
+                                {{ field.label }}
+                            </label>
+                            {% if field.help_text %}
+                                <div class="tooltip-container">
+                                    <i class="ri-information-line tooltip-icon"></i>
+                                    <div class="tooltip">
+                                        {{ field.help_text }}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                        {{ field }}
+                        {% if field.errors %}
+                            <p class="error-text">
+                                {% for error in field.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+
+            <button type="submit" class="submit-button">
+                Register
+            </button>
+        </form>
+
+        <p class="login-link">
+            Already have an account? 
+            <a href="{% url 'login' %}">Log in</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
